@@ -14,13 +14,13 @@ void main() {
     Random rand = new Random();
 
     boolean repeat = true;
+    int points = 0;
 
     System.out.println("Welcome to my Guessing Game.");
 
     while(repeat) {
 
         int randomNum = rand.nextInt(1, 10);
-        int points = 0;
 
         System.out.println("here is the random number for testing purposes: " + randomNum);
 
@@ -35,18 +35,19 @@ void main() {
         scan.nextLine();
 
         if (userGuess == randomNum) {
+            System.out.println("Correct good job.");
             points++;
         } else {
             System.out.println("Wrong guess");
         }
 
-        System.out.print("Do you want to try geussing again(Y/N)");
+        System.out.print("Do you want to try guessing again(Y/N): ");
 
 
 
         String userRepeat = scan.nextLine();
 
-        Boolean input = true;
+        boolean input = true;
 
         System.out.println("here is your response: " + userRepeat);
 
@@ -62,4 +63,5 @@ void main() {
             }
         }
     }
+    System.out.println("Thank you for playing here is your score: " + points);
 }
