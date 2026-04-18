@@ -15,6 +15,7 @@ void main() {
 
     boolean repeat = true;
     int points = 0;
+    int guess = 0;
 
     System.out.println("Welcome to my Guessing Game.");
 
@@ -30,15 +31,28 @@ void main() {
 
         System.out.print("Your Guess: ");
 
-        int userGuess = scan.nextInt();
+        int userGuess = -1;
 
-        scan.nextLine();
+        while(guess < 2) {
+            try {
+                userGuess = scan.nextInt();
+            }
+            catch(InputMismatchException e){
+                System.out.println("Wrong type of input try again: ");
+            }
 
-        if (userGuess == randomNum) {
-            System.out.println("Correct good job.");
-            points++;
-        } else {
-            System.out.println("Wrong guess");
+            scan.nextLine();
+            if (userGuess == randomNum) {
+                System.out.println("Correct good job.");
+                points++;
+            } else {
+                if(guess < 1) {
+                    System.out.print("Incorrect one more chance try again:");
+                }else{
+                    System.out.println("You ran out of guesses sorry.");
+                }
+                guess++;
+            }
         }
 
         System.out.print("Do you want to try guessing again(Y/N): ");
