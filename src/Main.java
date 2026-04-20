@@ -14,13 +14,24 @@ void main() {
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
 
-    try(FileWriter fileWriter = new FileWriter("highscore.txt")){
-
+    try(BufferedReader bufferedReader = new BufferedReader(new FileReader("highscore.txt"))){
+        String line;
+        while((line = bufferedReader.readLine()) != null){
+            System.out.println(line);
+        }
     }
-    catch(Exception e){
-
+    catch(FileNotFoundException e){
+        try(FileWriter fileWriter = new FileWriter("highscore.txt")){
+            fileWriter.write("");
+        }
+        catch(IOException f){
+            System.out.println("IOException f");
+        }
     }
-    BufferedReader bufferedReader = new BufferedReader(new FileReader());
+    catch(IOException e){
+        System.out.println("IOException e");
+    }
+
 
 
     boolean repeat = true;
@@ -110,4 +121,12 @@ void main() {
         }
     }
     System.out.println("Thank you for playing here is your score: " + points);
+
+    try(FileWriter fileWriter = new FileWriter("highscore.txt")){
+        fileWriter.write("Here is your high score: " + points);
+
+    }
+    catch(Exception e){
+        System.out.println("Error");
+    }
 }
