@@ -15,7 +15,7 @@ void main() {
 
     boolean repeat = true;
     int points = 0;
-    int guess = 0;
+
 
     System.out.println("Welcome to my Guessing Game.");
 
@@ -25,45 +25,61 @@ void main() {
 
         System.out.println("here is the random number for testing purposes: " + randomNum);
 
-        waiting(1);
+        //waiting(1);
 
         System.out.println("I have a random number between 1-10 and I want you to try and guess it.");
 
         System.out.print("Your Guess: ");
 
         int userGuess = -1;
+        boolean answeredCorrectly = true;
+        boolean c1 = true;
+        int guess = 0;
+        while(guess < 2 && answeredCorrectly) {
 
-        while(guess < 2) {
-            try {
-                userGuess = scan.nextInt();
-            }
-            catch(InputMismatchException e){
-                System.out.println("Wrong type of input try again: ");
-            }
+            while(c1) {
 
-            scan.nextLine();
-            if (userGuess == randomNum) {
-                System.out.println("Correct good job.");
-                points++;
-            } else {
-                if(guess < 1) {
-                    System.out.print("Incorrect one more chance try again:");
-                }else{
-                    System.out.println("You ran out of guesses sorry.");
+                try {
+
+                    userGuess = scan.nextInt();
+
+                    if (userGuess == randomNum) {
+
+                        System.out.println("Correct good job.");
+
+                        points++;
+
+                        answeredCorrectly = c1 = false;
+                    }
+                    else {
+                        if(guess < 1) {
+                            System.out.print("Incorrect one more chance try again:");
+                        }
+                        else{
+                            System.out.println("You ran out of guesses sorry.");
+                            c1 = false;
+                        }
+
+                    }
+                } catch (Exception e) {
+                    scan.nextLine();
+                    System.out.print("Wrong type of input try to guess a number between 1-10: ");
+                    guess--;
                 }
                 guess++;
             }
+
         }
 
         System.out.print("Do you want to try guessing again(Y/N): ");
 
-
+        scan.nextLine();
 
         String userRepeat = scan.nextLine();
 
         boolean input = true;
 
-        System.out.println("here is your response: " + userRepeat);
+        //System.out.println("here is your response: " + userRepeat);
 
         while(input) {
             if (userRepeat.equalsIgnoreCase("Y")) {
@@ -71,7 +87,7 @@ void main() {
             } else if (userRepeat.equalsIgnoreCase("N")) {
                 repeat = input = false;
             } else {
-                System.out.print("Please type Y for repeating or N for not repeating:");
+                System.out.print("Bad Input, Please type Y for repeating or N for not repeating:");
 
                 userRepeat = scan.nextLine();
             }
