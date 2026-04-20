@@ -33,10 +33,10 @@ void main() {
 
         int userGuess = -1;
         boolean answeredCorrectly = true;
-        boolean c1 = true;
+
         int guess = 0;
         while(guess < 2 && answeredCorrectly) {
-
+            boolean c1 = true;
             while(c1) {
 
                 try {
@@ -57,17 +57,23 @@ void main() {
                         }
                         else{
                             System.out.println("You ran out of guesses sorry.");
-                            c1 = false;
-                        }
 
+                        }
+                        c1 = false;
                     }
                 } catch (Exception e) {
                     scan.nextLine();
-                    System.out.print("Wrong type of input try to guess a number between 1-10: ");
-                    guess--;
+                    if(!(guess > 0)) {
+                        System.out.print("Wrong type of input try to guess a number between 1-10: ");
+                    }
+                    else{
+                        System.out.print("Wrong type of input. You have one more guess try to guess a number between 1-10: ");
+                    }
+
                 }
-                guess++;
+
             }
+            guess++;
 
         }
 
@@ -75,21 +81,20 @@ void main() {
 
         scan.nextLine();
 
-        String userRepeat = scan.nextLine();
+        String userRepeat;
 
         boolean input = true;
 
         //System.out.println("here is your response: " + userRepeat);
 
         while(input) {
+            userRepeat = scan.nextLine();
             if (userRepeat.equalsIgnoreCase("Y")) {
                 input = false;
             } else if (userRepeat.equalsIgnoreCase("N")) {
                 repeat = input = false;
             } else {
                 System.out.print("Bad Input, Please type Y for repeating or N for not repeating:");
-
-                userRepeat = scan.nextLine();
             }
         }
     }
