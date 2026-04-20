@@ -14,7 +14,7 @@ int points = 0;
 void main() {
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
-    int intline = 0;
+    int currentMax = 0;
 
     System.out.println("Welcome to my Guessing Game.");
 
@@ -24,11 +24,12 @@ void main() {
 
         while((line = bufferedReader.readLine()) != null){
             System.out.println("Your high score is : " + line);
+            currentMax = Integer.parseInt(line);
         }
 
 
-
     }
+
     catch(FileNotFoundException e){
         try(FileWriter fileWriter = new FileWriter("highscore.txt")){
             fileWriter.write("");
@@ -36,14 +37,13 @@ void main() {
         catch(IOException f){
             System.out.println("IOException f");
         }
-        if(line != null) {
-            intline = Integer.parseInt(line);
-        }
+
     }
     catch(IOException e){
         System.out.println("IOException e");
     }
 
+    assert line != null;
 
 
 
@@ -137,7 +137,7 @@ void main() {
     }
     System.out.println("Thank you for playing here is your score: " + points);
 
-    if(intline > points) {
+    if(currentMax > points) {
         try (FileWriter fileWriter = new FileWriter("highscore.txt")) {
             fileWriter.write("" + points);
 
