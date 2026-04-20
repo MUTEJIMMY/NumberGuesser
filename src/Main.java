@@ -9,16 +9,25 @@ private void waiting(int second){
         throw new RuntimeException(e);
     }
 }
+int points = 0;
 
 void main() {
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
+    int intline = 0;
 
+    System.out.println("Welcome to my Guessing Game.");
+
+    waiting(1);
+    String line = "";
     try(BufferedReader bufferedReader = new BufferedReader(new FileReader("highscore.txt"))){
-        String line;
+
         while((line = bufferedReader.readLine()) != null){
-            System.out.println(line);
+            System.out.println("Your high score is : " + line);
         }
+
+
+
     }
     catch(FileNotFoundException e){
         try(FileWriter fileWriter = new FileWriter("highscore.txt")){
@@ -27,6 +36,9 @@ void main() {
         catch(IOException f){
             System.out.println("IOException f");
         }
+        if(line != null) {
+            intline = Integer.parseInt(line);
+        }
     }
     catch(IOException e){
         System.out.println("IOException e");
@@ -34,11 +46,14 @@ void main() {
 
 
 
+
+
+    waiting(1);
+
+
     boolean repeat = true;
-    int points = 0;
 
 
-    System.out.println("Welcome to my Guessing Game.");
 
     while(repeat) {
 
@@ -122,11 +137,12 @@ void main() {
     }
     System.out.println("Thank you for playing here is your score: " + points);
 
-    try(FileWriter fileWriter = new FileWriter("highscore.txt")){
-        fileWriter.write("Here is your high score: " + points);
+    if(intline > points) {
+        try (FileWriter fileWriter = new FileWriter("highscore.txt")) {
+            fileWriter.write("" + points);
 
-    }
-    catch(Exception e){
-        System.out.println("Error");
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
     }
 }
