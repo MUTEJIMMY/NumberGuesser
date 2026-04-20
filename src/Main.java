@@ -51,7 +51,7 @@ void main() {
 
     while(repeat) {
 
-        int randomNum = rand.nextInt(1, 10);
+        int randomNum = rand.nextInt(1, 11);
 
         System.out.println("here is the random number for testing purposes: " + randomNum);
 
@@ -75,24 +75,27 @@ void main() {
                 try{
 
                     userGuess = scan.nextInt();
+                    if(userGuess > 0 && userGuess < 11) {
+                        if (userGuess == randomNum) {
 
-                    if (userGuess == randomNum) {
+                            System.out.println("Correct good job.");
 
-                        System.out.println("Correct good job.");
+                            points++;
 
-                        points++;
+                            answeredCorrectly = c1 = false;
+                        }
+                        else {
+                            if (guess < 1) {
+                                System.out.print("Incorrect one more chance try again:");
+                            } else {
+                                System.out.println("You ran out of guesses sorry.");
 
-                        answeredCorrectly = c1 = false;
+                            }
+                            c1 = false;
+                        }
                     }
-                    else {
-                        if(guess < 1) {
-                            System.out.print("Incorrect one more chance try again:");
-                        }
-                        else{
-                            System.out.println("You ran out of guesses sorry.");
-
-                        }
-                        c1 = false;
+                    else{
+                        System.out.print("Out of Bounds please guess a number between 1-10: ");
                     }
                 }
                 catch (Exception e) {
