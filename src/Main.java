@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 private void waiting(int second){
     second *= 1000;
@@ -12,6 +13,15 @@ private void waiting(int second){
 void main() {
     Scanner scan = new Scanner(System.in);
     Random rand = new Random();
+
+    try(FileWriter fileWriter = new FileWriter("highscore.txt")){
+
+    }
+    catch(Exception e){
+
+    }
+    BufferedReader bufferedReader = new BufferedReader(new FileReader());
+
 
     boolean repeat = true;
     int points = 0;
@@ -39,7 +49,7 @@ void main() {
             boolean c1 = true;
             while(c1) {
 
-                try {
+                try{
 
                     userGuess = scan.nextInt();
 
@@ -61,7 +71,8 @@ void main() {
                         }
                         c1 = false;
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     scan.nextLine();
                     if(!(guess > 0)) {
                         System.out.print("Wrong type of input try to guess a number between 1-10: ");
