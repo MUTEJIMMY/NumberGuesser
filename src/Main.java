@@ -22,12 +22,11 @@ void main() {
     String line = "";
     try(BufferedReader bufferedReader = new BufferedReader(new FileReader("highscore.txt"))){
 
+        //I had issues with this but you to have to parse int here in the while loop because the file only has one line so after this line = null and you cant parse null
         while((line = bufferedReader.readLine()) != null){
-            System.out.println("Your high score is : " + line);
+            System.out.println("Your high score is: " + line);
             currentMax = Integer.parseInt(line);
         }
-
-
     }
 
     catch(FileNotFoundException e){
@@ -42,11 +41,6 @@ void main() {
     catch(IOException e){
         System.out.println("IOException e");
     }
-
-    assert line != null;
-
-
-
 
     waiting(1);
 
@@ -71,8 +65,11 @@ void main() {
         boolean answeredCorrectly = true;
 
         int guess = 0;
+
         while(guess < 2 && answeredCorrectly) {
+
             boolean c1 = true;
+
             while(c1) {
 
                 try{
@@ -137,7 +134,7 @@ void main() {
     }
     System.out.println("Thank you for playing here is your score: " + points);
 
-    if(currentMax > points) {
+    if(currentMax < points) {
         try (FileWriter fileWriter = new FileWriter("highscore.txt")) {
             fileWriter.write("" + points);
 
